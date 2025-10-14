@@ -1,0 +1,43 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: laravel-frankenphp
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: laravel-frankenphp
+  template:
+    metadata:
+      labels:
+        app: laravel-frankenphp
+    spec:
+      containers:
+        - name: laravel-frankenphp
+          # image: laravel-frankenphp:latest
+          image: whiterabbitgede/franken-laravel:dev-v0.0.3
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          env:
+          - name: TZ
+            value: Asia/Jakarta
+          resources:
+            requests:
+              memory: "50Mi"
+              cpu: "10m"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: laravel-frankenphp-svc
+spec:
+  ports:
+    - name: http-80
+      port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: laravel-frankenphp
