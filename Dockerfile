@@ -5,6 +5,9 @@ WORKDIR /app
 # copy laravel project
 # COPY --chown=www-data:www-data . .
 
+USER www-data
+
 EXPOSE 80 443 8000
 
-CMD php artisan octane:frankenphp --host=0.0.0.0 --caddyfile=/app/Caddyfile
+CMD php artisan octane:frankenphp --host=0.0.0.0 
+#CMD php artisan octane:frankenphp --host=0.0.0.0 --caddyfile=/app/Caddyfile
