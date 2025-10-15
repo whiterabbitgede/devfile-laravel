@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
         - name: laravel-frankenphp
-          # image: laravel-frankenphp:latest
-          image: whiterabbitgede/franken-laravel:dev-v0.0.3
+          image: laravel-frankenphp:latest
+          #image: whiterabbitgede/franken-laravel:dev-v0.0.3
           ports:
             - name: http
               containerPort: 80
